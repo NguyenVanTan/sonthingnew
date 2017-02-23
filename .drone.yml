@@ -6,3 +6,12 @@ build:
  commands:
   - git log | head -n 20
   - mvn clean install -Dgpg.skip=true
+  - mvn test
+
+publish:
+  docker:
+    username: tannv85
+    password: Tanthu0412
+    email: tannv85@gmail.com
+    repo: tannv85/javaprojectexample
+
