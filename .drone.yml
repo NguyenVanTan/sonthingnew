@@ -17,7 +17,7 @@ compose:
       - MYSQL_USER = tannv
       - MYSQL_PASSWORD = tannv
   tomcat:
-    image: tomcat: 8.0
+    image: tomcat
     environment:
      - CATALINA_BASE = /usr/local/tomcat
      - CATALINA_HOME = /usr/local/tomcat
