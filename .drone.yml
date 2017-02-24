@@ -10,7 +10,8 @@ build:
 
 compose:
   database:
-    image: postgres
+    image: mysql:5.7
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=mysecretpassword
+      - MYSQL_ROOT_PASSWORD = tannv
+      - MYSQL_USER = tannv
+      - MYSQL_PASSWORD = tannv
