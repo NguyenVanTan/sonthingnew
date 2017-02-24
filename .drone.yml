@@ -7,4 +7,12 @@ build:
   - git log | head -n 20
   - mvn clean install -Dgpg.skip=true
   - mvn test
- 
+
+compose:
+ database:
+  image: mysql:5.7
+  environment:
+   - MYSQL_ROOT_PASSWORD: tannv
+   - MYSQL_DATABASE: test-database
+   - MYSQL_USER: tannv
+   - MYSQL_PASSWORD: tannv
