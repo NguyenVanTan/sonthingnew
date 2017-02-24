@@ -4,6 +4,7 @@ build:
  environment:
    - SCALA_VERSION=2.10.6
  commands:
+   - echo $JAVA_HOME
    - git log | head -n 20
    - mvn clean install -Dgpg.skip=true
    - mvn test
@@ -15,3 +16,8 @@ compose:
       - MYSQL_ROOT_PASSWORD = tannv
       - MYSQL_USER = tannv
       - MYSQL_PASSWORD = tannv
+  tomcat:
+    image: tomcat: 8.0
+    environment:
+     - CATALINA_BASE = /usr/local/tomcat
+     - CATALINA_HOME = /usr/local/tomcat
