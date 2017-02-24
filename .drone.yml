@@ -10,12 +10,8 @@ build:
 compose:
   database:
    image: mysql:5.7
-   restart: always
-   stdin_open: true
    environment:
-    MYSQL_ROOT_PASSWORD: supersecret
-    MYSQL_DATABASE: drone
-    MYSQL_USER: drone
-    MYSQL_PASSWORD: drone
-    volumes:
-     - /data/mysql:/var/lib/mysql
+    - MYSQL_ROOT_PASSWORD: supersecret
+    - MYSQL_DATABASE: drone
+    - MYSQL_USER: drone
+    - MYSQL_PASSWORD: drone
