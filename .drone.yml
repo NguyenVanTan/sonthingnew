@@ -1,15 +1,10 @@
 build:
  image: maven:3.3.3-jdk-8-onbuild
  pull: true
+ environment:
+  - SCALA_VERSION=2.10.6
  commands:
   - git log | head -n 20
   - mvn clean install -Dgpg.skip=true
   - mvn test
-compose:
- database:
-  image: mysql:5.7
-  environment:
-   - MYSQL_ROOT_PASSWORD=tannv
-   - MYSQL_DATABASE: tannv_test
-   - MYSQL_USER: tannv
-   - MYSQL_PASSWORD: tannv
+ 
