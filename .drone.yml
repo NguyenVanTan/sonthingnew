@@ -12,12 +12,14 @@ build:
       - mvn clean install -Dgpg.skip=true
     when:
       event: [push, tag]
-services:
-  web:
-      image: tomcat:8.5
-      ports:
-        - "8080:8080"
-      volumes:
-        - ./target/somthingnew.war:/usr/local/tomcat/webapps/ROOT.war
-        - ./target/somthingnew:/usr/local/tomcat/webapps/ROOT
-
+ compose:
+    database:
+      image: mysql:5.7
+      environment:
+        - MYSQL_ROOT_PASSWORD = tannv
+        - MYSQL_USER = tannv
+        - MYSQL_PASSWORD = tannv
+    tomcat:
+      image: tomcat
+      environment:
+       - CATALINA_BASE = /usr/local/tomcat
