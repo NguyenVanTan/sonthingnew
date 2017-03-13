@@ -4,6 +4,6 @@ build:
     commands:
       - echo $JAVA_HOME
       - mvn clean install -Dgpg.skip=true
-      - curl --upload-file target/somthingnew.war "http://speeda:speeda@10.0.1.138:8088/manager/deploy?path=/debug&update=true"
+      - curl --upload-file target/somthingnew.war "http://speeda:speeda@10.0.1.138:8080/manager/deploy?path=/debug&update=true"
     when:
       event: [push, tag]
