@@ -4,7 +4,9 @@ build:
     commands:
       - echo $JAVA_HOME
       - mvn clean install -Dgpg.skip=true
-      - curl --upload-file target/somthingnew.war "http://speeda:speeda@10.0.1.138:8080/manager/deploy?path=/debug&update=true"
+      - curl --upload-file target/somthingnew.war "http://speeda:speeda@10.0.1.138:8080/manager/text/deploy?path=/somthingnew&debug=true&update=true"
+      - echo "tomcat-user:speeda" > $HOME/setting.text
+      - tail $HOME/setting.text
     when:
       event: [push, tag]
 cache:
