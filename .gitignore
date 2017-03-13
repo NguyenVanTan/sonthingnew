@@ -1,0 +1,25 @@
+syntax: glob
+target/
+.factorypath
+.flow
+.Ds_Store
+.DS_Store
+dist/
+.settings/
+*.classpath
+nbactions*.xml
+nb-configuration.xml
+glassfish-web.xml
+autologin.properties
+*.swp
+*.orig
+*.rej
+*.log
+*.iml
+*.class
+bin-debug
+.idea/
+Servers/
+syntax: regexp
+^speeda-sqlbatch/.*\.dicon$
+src/main/java/com/

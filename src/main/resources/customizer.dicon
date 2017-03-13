@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN" 
+  "http://www.seasar.org/dtd/components24.dtd">
+<components>
+  <include path="default-customizer.dicon" />
+
+  <component name="daoAttendanceCustomizer"
+    class="org.seasar.framework.container.customizer.AspectCustomizer">
+    <property name="interceptorName">"daoattendance.interceptor"</property>
+    <initMethod name="addClassPattern">
+      <arg>"com.framgia.attendance.dao"</arg>
+      <arg>".*Dao"</arg>
+    </initMethod>
+  </component>
+  
+  <component name="daoCustomizer"
+    class="org.seasar.framework.container.customizer.CustomizerChain">
+    <initMethod name="addCustomizer">
+      <arg>daoAttendanceCustomizer</arg>
+    </initMethod>
+  </component>
+  
+  <component name="logicCustomizer"
+    class="org.seasar.framework.container.customizer.CustomizerChain">
+    <initMethod name="addCustomizer">
+      <arg>
+        <component class="org.seasar.framework.container.customizer.AspectCustomizer">
+          <property name="interceptorName">"j2ee.requiredTx"</property>
+          <property name="pointcut">".*Tx"</property>
+        </component>
+      </arg>
+    </initMethod>
+  </component>
+
+  <component name="taskSupportAspectCustomizer" class="org.seasar.framework.container.customizer.AspectCustomizer">
+		<initMethod name="addInterceptorName">
+			<arg>"aop.traceInterceptor"</arg>
+		</initMethod>
+		<property name="pointcut">"do.*, initialize, destroy"</property>
+	</component>
+	<component name="taskCustomizer" class="org.seasar.framework.container.customizer.CustomizerChain">
+		<initMethod name="addCustomizer">
+			<arg>taskSupportAspectCustomizer</arg>
+		</initMethod>
+	</component>
+	<component name="triggerSupportAspectCustomizer" class="org.seasar.framework.container.customizer.AspectCustomizer">
+		<initMethod name="addInterceptorName">
+			<arg>"aop.traceInterceptor"</arg>
+		</initMethod>
+		<property name="pointcut">".*"</property>
+	</component>
+	<component name="triggerCustomizer" class="org.seasar.framework.container.customizer.CustomizerChain">
+		<initMethod name="addCustomizer">
+			<arg>triggerSupportAspectCustomizer</arg>
+		</initMethod>
+	</component>
+
+</components>
