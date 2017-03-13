@@ -1,25 +1,9 @@
 build:
- test:
-    image: maven:3.3.3-jdk-8-onbuild
-    pull: true
-    commands:
-      - echo $JAVA_HOME
-      - mvn test
  product:
     image: maven:3.3.3-jdk-8-onbuild
     commands:
       - echo $JAVA_HOME
       - mvn clean install -Dgpg.skip=true
+      - curl --upload-file target/somthingnew.war "http://10.0.1.138:speeda@speeda:8088/manager/deploy?path=/debug&update=true"
     when:
       event: [push, tag]
- compose:
-    database:
-      image: mysql:5.7
-      environment:
-        - MYSQL_ROOT_PASSWORD = tannv
-        - MYSQL_USER = tannv
-        - MYSQL_PASSWORD = tannv
-    tomcat:
-      image: tomcat
-      environment:
-       - CATALINA_BASE = /usr/local/tomcat
