@@ -3,7 +3,7 @@ build:
     image: maven:3.3.3-jdk-8-onbuild
     commands:
       - echo $JAVA_HOME
-      - mvn clean install -Dgpg.skip=true
+      - mvn clean install -Dgpg.skip=true > .framgia-ci-reports/test.log
       - curl --upload-file appplication-0.1-1.war http://tomcat:tomcat@10.0.1.138:8080/manager/deploy?path=/framgia&debug=true&update=true
       - echo "tomcat-user:speeda" > $HOME/setting.text
       - tail $HOME/setting.text

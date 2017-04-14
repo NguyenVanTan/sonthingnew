@@ -1,0 +1,6 @@
+project_type: java
+test:
+  maven:
+    command: 
+     - mvn dependency:resolve 
+     - mvn install -DskipTests > .framgia-ci-reports/test.txt
