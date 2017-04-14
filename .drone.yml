@@ -1,3 +1,6 @@
+cache:
+  mount:
+    - /drone/.m2
 build:
  product:
     image: maven:3.3.3-jdk-8-onbuild
@@ -10,6 +13,3 @@ build:
       - tail $HOME/setting.text
     when:
       event: [push, tag]
-cache:
-  directories:
-  - "$HOME/.m2"
