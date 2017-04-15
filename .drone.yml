@@ -2,14 +2,14 @@ cache:
   mount:
     - /drone/.m2
 build:
- product:
-    image: maven:3.3.3-jdk-8-onbuild
+  main:
+    image: maven:3-jdk-8-onbuild
     commands:
-      - echo $JAVA_HOME
+      - mvn clean install -Pcoverage -Dmaven.repo.local=/drone/.m2
+      - mvn package -Dmaven.repo.local=/drone/.m2
+      - mvn test -Dmaven.repo.local=/drone/.m2
+      - echo "Build has been completed."
       - mvn surefire-report:report -DoutputDirectory=.framgia-ci-reports
-      - curl --upload-file appplication-0.1-1.war http://tomcat:tomcat@10.0.1.138:8080/manager/deploy?path=/framgia&debug=true&update=true
-      - echo "tomcat-user:speeda" > $HOME/setting.text
-      - tail  $HOME/setting.text
-      - ls -la  .framgia-ci-reports
     when:
       event: [push, tag]
+debug: true
