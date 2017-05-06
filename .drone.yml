@@ -9,7 +9,7 @@ build:
       - mvn package -Dmaven.repo.local=/drone/.m2
       - mvn test -Dmaven.repo.local=/drone/.m2
       - echo "Build has been completed."
-      - mvn surefire-report:report -DoutputDirectory=.framgia-ci-reports
+      - mvn surefire-report:report
     when:
       event: [push, tag]
 debug: true
